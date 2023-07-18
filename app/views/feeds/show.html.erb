@@ -1,0 +1,13 @@
+<div class="container">
+    <h3 class="text-center">Showing Feed</h3>
+    <div class="card text-center mt-4">
+        <h5 class="card-header">by Random User</h5>
+        <div class="card-body">
+            <h5 class="card-title"><%= @feed.title %></h5>
+            <p class="card-text"><%= @feed.description %></p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <%= link_to "Edit", edit_feed_path(@feed), class: "btn btn-primary" %>
+            <%= link_to "Delete", feed_path(@feed), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-primary" %>
+        </div>
+    </div>
+</div>

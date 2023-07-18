@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_21_164348) do
+ActiveRecord::Schema.define(version: 2023_07_17_083748) do
+
+  create_table "feeds", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "game_users", force: :cascade do |t|
     t.integer "game_id"
