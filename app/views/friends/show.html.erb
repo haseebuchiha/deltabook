@@ -1,0 +1,24 @@
+<h1 class="text-center mt-4">Friends List</h1>
+<div class="container mt-5">
+  <div class="row">
+    <% @all_friends.each  do |g| %>
+      <div class="col-xl-4 col-lg-6 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex align-items-center">
+              <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                alt=""
+                style="width: 45px; height: 45px"
+                class="rounded-circle"
+                />
+              &nbsp
+              <div class="ms-3">
+                <p class="fw-bold mb-1"><strong>UserName:&nbsp </strong> <%=g.username%> </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
