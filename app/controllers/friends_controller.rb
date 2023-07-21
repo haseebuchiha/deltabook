@@ -2,7 +2,6 @@ class FriendsController < ApplicationController
   before_action :require_user
   def create
     @user=User.find_by(username: params[:friend][:username])
-    byebug
     if @user
     if !current_user.friends.include?(@user) && !@user.friends.include?(current_user)
       @user.friends << current_user
