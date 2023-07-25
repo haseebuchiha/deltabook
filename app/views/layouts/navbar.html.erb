@@ -1,0 +1,51 @@
+<style>
+
+<%= ".msgg-#{current_user&.id}" %> {
+  text-align: start;
+}
+<%= ".msgg-#{current_user&.id} p" %> {
+ background-color: #007bff !important;
+ color: #fff !important;
+}
+
+</style>
+
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<div class="container-fluid">
+    <a class="h5 font-weight-bold mt-2">LOGO_HERE</a>
+    <span class="navbar-toggler-icon"></span>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <%= link_to 'Home', root_path, class:" nav-link active" %>              
+        <%if current_user%>
+          <%= link_to 'Profile', user_path(current_user.id), class:" nav-link" %>              
+          <%= link_to 'Add Games', edit_user_path(current_user.id), class: "nav-link"%>    
+          <%= link_to 'Chat App', api_chatapp_path, class:" nav-link" %>           
+          <%= link_to 'Logout', logout_path, class: "nav-link", method: :delete %>
+        <% end %>  
+      <%if !current_user%>
+        <li class="nav-item">
+          <%= link_to 'Log in', login_path, class: "nav-link" %>
+        </li>
+          <li class="nav-item">
+            <%= link_to 'Signup', signup_path, class: "nav-link"%>
+          </li>
+      <% end %>            
+    </div>
+  </div>
+</div>
+</nav> 
+
+<div class="text-center">
+<% flash.each do |name, msg| %>
+  <div class="alert <%= name.to_s == "notice" ? "alert-success" : "alert-danger" %> alert-dismissible fade show" role="alert">
+      <%= msg %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+<% end %> 
+</div>

@@ -1,0 +1,34 @@
+.sidebar{
+    flex: 1;
+    background-color: #eee;
+}
+.icon{
+    display: none;
+}
+@media screen and (max-width: 1040px){
+    .sidebar{
+        position: absolute;
+        left: 0;
+        width: 0;
+        overflow: hidden;
+        transition: all 1s ease;
+        height: 100%;
+    }
+    .sidebar.active{
+        width: 250px;
+    }
+    .icon{
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        z-index: 1;
+        transition: all 1s ease;
+    }
+    .icon.active{
+        position: absolute;
+        top: 50%;
+        left: 250px;
+        z-index: 1;
+    }
+}

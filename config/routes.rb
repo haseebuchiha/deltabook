@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :users, except: [:show]
 
+  get 'chatapp', to: 'pages#index'
   get 'towerofhonoi', to: 'games#towerofhonoi'
   get 'tictactoe', to: 'games#tictactoe'
   get 'rockpaperscissor', to: 'games#rockpaper'
@@ -13,6 +14,9 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   post 'users', to: 'users#create'  
 
-  resources :messages
-  mount ActionCable.server, at: '/cable'
+  namespace :api do
+    resources :messages, only: %i[index create show]
+    get 'msg', to: 'messages#hello'
+  end
+  mount ActionCable.server => '/cable'
 end

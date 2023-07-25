@@ -1,6 +1,6 @@
 import consumer from "./consumer"
 
-consumer.subscriptions.create("ChatroomChannel", {
+const ChatroomChannel = consumer.subscriptions.create("ChatroomChannel", {
   connected() {
     console.log("connected...")
     // Called when the subscription is ready for use on the server
@@ -12,13 +12,12 @@ consumer.subscriptions.create("ChatroomChannel", {
 
   received(data) {
     // console.log(data.mod_msg)
-    $('#msg').append(data.mod_msg)
-
-    if ($('#msg').length > 0) {
-      $('#msg').scrollTop($('#msg')[0].scrollHeight);
-    }
+    // $('#msg').append(data.mod_msg)
+    // if ($('#msg').length > 0) {
+    //   $('#msg').scrollTop($('#msg')[0].scrollHeight);
+    // }
     // Called when there's incoming data on the websocket for this channel
-  },
-
- 
+  }, 
 });
+
+export default ChatroomChannel
