@@ -25,11 +25,16 @@ ActiveRecord::Schema.define(version: 2023_07_17_184652) do
     t.string "body"
     t.integer "user_id"
   end
-
+  
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
     t.string "password_digest"
+  end
+
+  create_table "users_friends", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "friend_id"
   end
 
 end
