@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  get 'friends/new'
+  post 'friends/create'
+  get 'friends/show'
   root 'pages#home'
   resources :games, only: [:show]
   resources :users, only: [:show]
