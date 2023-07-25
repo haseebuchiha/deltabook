@@ -5,7 +5,6 @@ $( document ).ready(function() {
   }
 
   $('.text-btn').on('click',function() {
-      console.log("clicked")
       setTimeout(function() {
         $("#msg-form").trigger("reset");
       },100);
