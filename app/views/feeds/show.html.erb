@@ -15,6 +15,7 @@
                     <p class="card-text"><%= @feed.description %></p>
                 </div>
                 <div class="d-flex justify-content-center">
+                    <%= link_to "Back to Feeds", feeds_path, class: "btn btn-outline-primary mx-2" %>
                     <%= link_to "Edit", edit_feed_path(@feed), class: "btn btn-outline-success mx-2" %>
                     <%= link_to "Delete", feed_path(@feed), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-outline-danger mx-2" %>
                 </div>
