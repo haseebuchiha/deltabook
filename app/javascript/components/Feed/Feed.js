@@ -45,8 +45,8 @@ const Feed = (props) => {
                     </div>
                     <hr />
                     <div className="text-muted mb-3">
-                        <small> Create {feed.created_at} ago,
-                            edited {feed.updated_at} ago</small>
+                        <small> Created {feed.created_at} ago,
+                            Edited {feed.updated_at} ago</small>
                     </div>
                 </div>
             </div>

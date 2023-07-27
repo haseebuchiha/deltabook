@@ -1,12 +1,23 @@
 import React from "react";
 import FormFeed from "./Form";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const NewFeed = (props => {
+const EditFeed = (props => {
     const [feed, setFeed] = useState({})
     const navigate = useNavigate()
+    const params = useParams()
+
+    useEffect(() => {
+        const id = params.id
+        const url = `/api/v1/feeds/${id}`
+        axios.get(url)
+            .then(resp => {
+                setFeed(resp.data)
+            })
+            .catch(resp => console.log(resp))
+    }, [])
 
     const handleChange = (e) => {
         e.preventDefault()
@@ -25,7 +36,7 @@ const NewFeed = (props => {
 
     return (
         <div className="container">
-            <h3 className="text-center mb-4">Create new Feed</h3>
+            <h3 className="text-center mb-4">Edit Feed</h3>
             <FormFeed
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
@@ -38,4 +49,4 @@ const NewFeed = (props => {
     )
 })
 
-export default NewFeed;
+export default EditFeed;

@@ -19,7 +19,7 @@ const Feed = (props) => {
                     <hr />
                     <div class="text-muted mb-3">
                         <small> Created {props.attributes.created_at} ago,
-                            edited {props.attributes.updated_at} ago</small>
+                            Edited {props.attributes.updated_at} ago</small>
                     </div>
                 </div>
                 <div class="col col-2 d-flex flex-column justify-content-around bg-light py-3">
