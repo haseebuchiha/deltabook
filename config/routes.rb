@@ -9,8 +9,6 @@ Rails.application.routes.draw do
       resources :feeds
     end
   end
-
-  get 'feeds', to: 'pages#feeds'
   
   get 'towerofhonoi', to: 'games#towerofhonoi'
   get 'tictactoe', to: 'games#tictactoe'
