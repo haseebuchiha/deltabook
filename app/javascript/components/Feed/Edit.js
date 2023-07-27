@@ -47,6 +47,6 @@ const EditFeed = () => {
             </div>
         </div>
     )
-})
+}
 
 export default EditFeed;
