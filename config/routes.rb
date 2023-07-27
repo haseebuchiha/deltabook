@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  get 'friends/new'
+  post 'friends/create'
+  get 'friends/show'
   root 'pages#home'
   resources :games, only: [:show]
   resources :users, only: [:show]
@@ -14,4 +18,7 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   get 'signup', to: 'users#new'
   post 'users', to: 'users#create'  
+
+  resources :messages
+  mount ActionCable.server, at: '/cable'
 end
