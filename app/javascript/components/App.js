@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Route, Switch, Routes } from 'react-router-dom'
+import React from 'react'
+import { Route, Routes } from 'react-router-dom'
 import Feed from './Feed/Feed';
 import Feeds from './Feeds/Feeds';
 import NewFeed from './Feed/New';

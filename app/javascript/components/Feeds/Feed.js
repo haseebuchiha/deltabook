@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Feed = (props) => {
     return (
@@ -30,7 +30,6 @@ const Feed = (props) => {
             </div>
         </div >
     )
-
 }
 
 export default Feed;

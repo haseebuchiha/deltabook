@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const NewFeed = (props => {
+const NewFeed = () => {
     const [feed, setFeed] = useState({})
     const navigate = useNavigate()
 
