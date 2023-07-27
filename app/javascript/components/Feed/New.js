@@ -36,6 +36,6 @@ const NewFeed = () => {
             </div>
         </div>
     )
-})
+}
 
 export default NewFeed;
