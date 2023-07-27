@@ -1,4 +1,4 @@
-<%= form_with(model: @feed,class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
+<%= form_with(model: @feed,class: "shadow p-3 mb-3 bg-dark text-white rounded", local: true) do |f| %>
     <div class="form-group row">
         <%= f.label :title, "Feed Title" , class: "col-2 col-form-label text-light" %>
         <div class="col-10">
@@ -18,3 +18,6 @@
     </div>
 
 <% end %>
+<div class="text-center">
+    <%= link_to "Back to Feeds", feeds_path, class: "btn btn-outline-dark btn-lg mt-3" %>
+</div>

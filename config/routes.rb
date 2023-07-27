@@ -4,8 +4,14 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :users, except: [:show]
 
-  resources :feeds
+  namespace :api do
+    namespace :v1 do
+      resources :feeds
+    end
+  end
 
+  get 'feeds', to: 'pages#feeds'
+  
   get 'towerofhonoi', to: 'games#towerofhonoi'
   get 'tictactoe', to: 'games#tictactoe'
   get 'rockpaperscissor', to: 'games#rockpaper'
@@ -14,4 +20,6 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   get 'signup', to: 'users#new'
   post 'users', to: 'users#create'  
+
+  match "*path" => "pages#feeds", via: [:get, :post]
 end

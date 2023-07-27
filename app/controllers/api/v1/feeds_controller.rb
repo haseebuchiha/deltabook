@@ -1,7 +1,8 @@
 module Api
     module V1
-
+     
         class FeedsController < ApplicationController
+            protect_from_forgery with: :null_session
             before_action :set_feed, only: [:show, :edit, :update, :destroy]
 
             def show
@@ -13,34 +14,29 @@ module Api
                 render json: @feeds
             end
 
-            def new
-            end
-
             def create
                 @feed = Feed.new(feed_params)
                 if @feed.save
-                    flash[:notice] = "Feed has been posted successfully"
-                    redirect_to @feed
+                    render json: {id: @feed.id}
                 else
-                    render 'new'
+                    render json: { error: @feed.errors.messages }, status: 422
                 end
-            end
-
-            def edit
             end
 
             def update
                 if @feed.update(feed_params)
-                    flash[:notice] = "Feed has been posted successfully"
-                    redirect_to @feed
+                    render json: @feed
                 else
-                    render 'edit'
+                    render json: { error: @feed.errors.messages }, status: 422
                 end
             end
 
             def destroy
-                @feed.destroy
-                redirect_to feeds_path
+                if @feed.destroy
+                    head :no_content
+                else
+                    render json: { error: feeds.errors.messages }, status: 422
+                end
             end
 
             private
@@ -52,8 +48,6 @@ module Api
             def feed_params
                 params.require(:feed).permit(:title, :description)
             end
-
-        end
-
+        end 
     end
 end
