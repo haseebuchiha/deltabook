@@ -4,15 +4,29 @@
     <title>RailsProject</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    
+    <script src="https://kit.fontawesome.com/dbd39da8f1.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'msg' %>
     <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    
+    <style>
+
+      <%= ".msgg-#{current_user&.id}" %> {
+        text-align: start;
+      }
+      <%= ".msgg-#{current_user&.id} p" %> {
+       background-color: #007bff !important;
+       color: #fff !important;
+      }
+
+    </style>
 
   </head>
-
+  
   <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
@@ -23,7 +37,8 @@
             <%= link_to 'Home', root_path, class:" nav-link active" %>              
               <%if current_user%>
                 <%= link_to 'Profile', user_path(current_user.id), class:" nav-link" %>              
-                <%= link_to 'Add Games', edit_user_path(current_user.id), class: "nav-link"%>              
+                <%= link_to 'Add Games', edit_user_path(current_user.id), class: "nav-link"%>    
+                <%= link_to 'Chat App', messages_path, class:" nav-link" %>           
                 <%= link_to 'Logout', logout_path, class: "nav-link", method: :delete %>
                 <%= link_to 'Add Friends', friends_new_path, class: "nav-link" %>
               <%= link_to 'Friends List', friends_show_path, class: "nav-link" %>
@@ -43,11 +58,11 @@
 
     <div class="text-center">
       <% flash.each do |name, msg| %>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-          <%= msg %>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <div class="alert <%= name.to_s == "notice" ? "alert-success" : "alert-danger" %> alert-dismissible fade show" role="alert">
+            <%= msg %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
         </div>
       <% end %> 
     </div>
