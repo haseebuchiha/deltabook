@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :users, except: [:show]
 
+  resources :feeds
+
   get 'towerofhonoi', to: 'games#towerofhonoi'
   get 'tictactoe', to: 'games#tictactoe'
   get 'rockpaperscissor', to: 'games#rockpaper'

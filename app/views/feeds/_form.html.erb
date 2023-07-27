@@ -1,0 +1,20 @@
+<%= form_with(model: @feed,class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
+    <div class="form-group row">
+        <%= f.label :title, "Feed Title" , class: "col-2 col-form-label text-light" %>
+        <div class="col-10">
+            <%= f.text_field :title, class: "form-control shadow rounded", placeholder: "Write title here" %>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <%= f.label :description, "Description" , class: "col-2 col-form-label text-light" %>
+        <div class="col-10">
+            <%= f.text_field :description, class: "form-control shadow rounded", placeholder: "Write description here" %>
+        </div>
+    </div>
+
+    <div class="form-group row justify-content-center">
+        <%= f.submit class: "btn btn-outline-light btn-lg" %>
+    </div>
+
+<% end %>
