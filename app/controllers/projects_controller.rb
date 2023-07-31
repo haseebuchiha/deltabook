@@ -20,16 +20,6 @@ class ProjectsController < ApplicationController
 
   def iframe
     @html_content = @project.files.blobs.find_by(content_type: 'text/html')&.download
-    @html_content = remove_local_css_and_scripts(@html_content)
-  
-    # Fetch all CSS files from the project's attached files
-    @css_files = @project.files.select { |file| file.content_type.in?(%w(text/css)) }
-  
-    # Fetch all JS files from the project's attached files
-    @js_files = @project.files.select { |file| file.content_type.in?(%w(text/javascript)) }
-  
-    # Fetch all image files from the project's attached files (assuming you want image files here)
-    @image_files = @project.files.select { |file| file.image? }
   
     render layout: false # To render the iframe view without the default layout
   end
@@ -96,8 +86,6 @@ class ProjectsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_project
       @project = Project.find(params[:id])
-      @js_attachment = @project.files.blobs.find_by(content_type: 'application/javascript')
-      @css_attachment = @project.files.blobs.find_by(content_type: 'text/css')
       
     end
     
@@ -134,23 +122,6 @@ class ProjectsController < ApplicationController
       redirect_to root_path, alert: "You are not authorized to perform this action." unless @project.user == current_user
     end
     
-    def remove_local_css_and_scripts(html_content)
-      doc = Nokogiri::HTML.fragment(html_content)
-    
-      # Select and remove locally included CSS <link> tags with .css files
-      doc.css("link[rel='stylesheet']").each do |link|
-        href = link['href']
-        link.remove if href&.start_with?('/') || href&.start_with?('./') || href&.start_with?('../')
-      end
-    
-      # Select and remove locally included <script> tags
-      doc.css("script[src]").each do |script|
-        src = script['src']
-        script.remove if src&.start_with?('/') || src&.start_with?('./') || src&.start_with?('../')
-      end
-    
-      doc.to_html
-    end
     
     
     

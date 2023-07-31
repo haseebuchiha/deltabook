@@ -7,13 +7,6 @@
 
   <base href="<%= base_tag_path %>">
   
-  
-  <!-- Include CSS files -->
-  <% @css_files.each do |css_file| %>
-    <style>
-      /* <%= css_file.download %> */
-    </style>
-  <% end %>
 </head>
 <body>
   <!-- Render the HTML content -->
@@ -21,11 +14,5 @@
     <%= @html_content.html_safe if @html_content.present? %>
   </div>
 
-  <!-- Include JS files -->
-  <% @js_files.each do |js_file| %>
-    <script>
-      // <%= js_file.download.html_safe %>
-    </script>
-  <% end %>
 </body>
 </html>

@@ -17,11 +17,6 @@ class Project < ApplicationRecord
       FileUtils.rm_rf(folder_path)
     end
 
-    def image_folder_path
-        folder_path = Rails.root.join('public/uploads', folder_name)
-        folder_path.to_s
-    end
-
     def set_folder_name
         self.folder_name = "image_folder_#{Time.now.to_i}" if folder_name.blank?
       end
