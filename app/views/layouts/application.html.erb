@@ -22,8 +22,9 @@
           <div class="navbar-nav">
             <%= link_to 'Home', root_path, class:" nav-link active" %>              
               <%if current_user%>
-                <%= link_to 'Profile', user_path(current_user.id), class:" nav-link" %>              
-                <%= link_to 'Add Games', edit_user_path(current_user.id), class: "nav-link"%>              
+                <%= link_to 'Profile', user_path(current_user.id), class:" nav-link" %>  
+                <%= link_to 'All Games', projects_path(current_user.id), class: "nav-link"%>               
+                <%= link_to 'Add Games', new_project_path(current_user.id), class: "nav-link"%>              
                 <%= link_to 'Logout', logout_path, class: "nav-link", method: :delete %>
                 <%= link_to 'Add Friends', friends_new_path, class: "nav-link" %>
               <%= link_to 'Friends List', friends_show_path, class: "nav-link" %>

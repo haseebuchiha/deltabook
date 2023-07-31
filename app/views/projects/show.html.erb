@@ -1,0 +1,17 @@
+<p style="color: green"><%= notice %></p>
+
+<h1><%= @project.title %></h1>
+<div>
+  <% if current_user == @project.user%> 
+  <%= link_to "Edit this post", edit_project_path(@project), class:"btn btn-outline-info"  %> 
+  <%= link_to"Destroy this post", @project, method: :delete, class:"btn btn-outline-danger" %>
+
+  <%end%>
+<%if current_user%>
+<% if @html_content.present? %>
+<%= link_to "Back to games", projects_path, class: "btn btn-outline-secondary" %>
+ <%= link_to "Play this game", iframe_project_path(@project), target: "_blank", class: "btn btn-outline-success" %>
+
+<% end %>
+<% end %>
+</div>

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :projects do
+    get 'iframe', on: :member
+  end
   get 'friends/new'
   post 'friends/create'
   get 'friends/show'

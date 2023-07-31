@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.0'
-
+gem 'bootstrap', '~> 5.0.2'
+gem 'nokogiri'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.0.6', '>= 6.0.6.1'
 # Use sqlite3 as the database for Active Recordgem 'rails', '~> 6.0.6', '>= 6.0.6.1'
