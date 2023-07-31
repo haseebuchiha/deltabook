@@ -12,6 +12,14 @@
 
 ActiveRecord::Schema.define(version: 2023_07_24_105647) do
 
+ActiveRecord::Schema.define(version: 2023_07_20_150115) do
+  
+  create_table "feeds", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
   create_table "game_users", force: :cascade do |t|
     t.integer "game_id"
     t.integer "user_id"
@@ -21,6 +29,11 @@ ActiveRecord::Schema.define(version: 2023_07_24_105647) do
     t.string "name"
   end
 
+
+  create_table "messages", force: :cascade do |t|
+    t.string "body"
+    t.integer "user_id"
+  end
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
@@ -30,6 +43,11 @@ ActiveRecord::Schema.define(version: 2023_07_24_105647) do
     t.datetime "remember_created_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "users_friends", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "friend_id"
   end
 
 end
