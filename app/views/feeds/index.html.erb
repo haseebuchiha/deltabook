@@ -1,0 +1,40 @@
+<div class="container-fluid">
+<div class="row">
+
+        <div class="col col-sm-12 col-lg-3">
+            <h5 class="text-center">Total Feeds: <%= @feeds.count %></h5>
+        </div>
+
+        <div class="col col-sm-12 col-lg-6">
+            <h3 class="text-center">Showing All Feeds</h3>
+            <% @feeds.each do |feed| %>
+                <div class="col card text-center mt-4 rounded-lg shadow">
+                    <div class="row">
+                        
+                        <div class="col col-3 bg-dark text-white d-flex justify-content-center align-items-center">
+                        <h5 class="mb-3"><small>by</small><br>Random User</h5>
+                        </div>
+
+                        <div class="col col-7">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= feed.title %></h5>
+                                <hr>
+                                <p class="card-text"><%= feed.description %></p>
+                            </div>
+                            <hr>
+                            <div class="text-muted mb-3">
+                                <small> Create <%= time_ago_in_words(feed.created_at) %> ago,
+                                edited <%= time_ago_in_words(feed.updated_at) %> ago</small>
+                            </div>
+                        </div>
+                        <div class="col col-2 d-flex flex-column justify-content-around bg-light">
+                            <%= link_to "Show", feed_path(feed), class: "btn btn-outline-primary" %>
+                            <%= link_to "Edit", edit_feed_path(feed), class: "btn btn-outline-success" %>
+                            <%= link_to "Delete", feed_path(feed), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-outline-danger" %>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
