@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { registrations: 'users/registrations' }
+  devise_for :users, 
+              controllers: { 
+                registrations: 'users/registrations' }
   root to: 'pages#home'
   resources(:games, {only: [:show]})
   resources :users, only: [:show]
