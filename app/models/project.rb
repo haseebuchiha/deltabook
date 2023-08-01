@@ -1,10 +1,10 @@
 class Project < ApplicationRecord
     belongs_to :user
     has_many_attached :files, dependent: :destroy
-    
+    validates :title, presence: true, uniqueness: {case_sensitive: false}, length: {minimum: 8, maximum: 20}
+         
     before_save :set_folder_name, if: :new_record?
     after_save :create_image_folder, if: :folder_name_changed?
-    # after_create :create_image_folder
     before_destroy :remove_image_folder
   
     
@@ -24,18 +24,9 @@ class Project < ApplicationRecord
       def create_image_folder
         folder_path = Rails.root.join('public/uploads', folder_name)
         FileUtils.mkdir_p(folder_path)
-        add_files_to_image_folder(folder_path)
+        
       end
     
-      def add_files_to_image_folder(folder_path)
-        files.each do |file|
-          next unless file.image?
-    
-          # Get the image content and save it to the new location
-          File.open(File.join(folder_path, file.filename.to_s), 'wb') do |f|
-            f.write(file.download)
-          end
-        end
-      end
+  
   end
   

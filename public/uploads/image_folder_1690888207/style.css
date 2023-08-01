@@ -1,0 +1,112 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #424140 0%, #535251 100%);
+}
+.container-fluid{
+    background-color: #626291dd;
+    text-align: center;
+    color: white;
+}
+.controls{
+    color: #3a3636;
+    margin: auto 10px 10px 10px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    background-color: #887f7fdd;  
+}
+.diskNumber{
+    width: 20%;
+}
+.diskUpDown{
+    width: 5rem;
+}
+.disabledClass{
+    cursor: not-allowed;
+    opacity: 0.9;
+    background-color: #bb0000d3;
+}
+.rod-container{
+    height: 500px;
+    display: flex;
+    justify-content: center;
+}
+.rod-container-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#rod1-container{
+    background-color: #deb887;
+}
+#rod2-container{
+    background-color: #8b8072;
+}
+#rod3-container{
+    background-color: #037274;
+}
+.rod{
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: end;
+    align-items: center;
+    height: 75%;
+    width: 12px;
+    border-radius: 5px;
+    background-color: #a43a09e4;
+    touch-action: none;
+}
+.disk{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    height: 10%;
+    margin: 2px 0px;
+    color: #ffffff;
+    z-index: 1;
+}
+.buttons-container{
+    margin: 30px 0px;
+    display: flex;
+    justify-content:space-between;
+}
+.info {
+    min-width: 15%;
+    background-color: #7f7f88dd;
+    color: #3a3636;
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.info:hover{
+    background-color: #4b3333;
+    color: #999191;
+}
+.playAgain-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.playAgain-btn>h4{
+    font-weight: bolder;
+}
+.modal-body{
+    display: flex;
+    justify-content: center;
+}
+.modal-content{
+    color: #fff;
+    background-color: #636363;
+    margin: auto;
+}
+.modal-title a{
+    text-decoration: none;
+}
+.close-btn{
+    color: #000;
+}
+.close{
+    opacity: 1;
+    font-size: 3rem;
+}

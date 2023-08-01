@@ -85,7 +85,11 @@ class ProjectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
+      if Project.exists?(params[:id])
       @project = Project.find(params[:id])
+    else
+      redirect_to projects_path, alert: 'Uh oh looks like the game u wanted to play MAGICALLY DISPAPPEARED :00'
+    end
       
     end
     
