@@ -6,7 +6,7 @@ module Api
             before_action :set_feed, only: [:show, :edit, :update, :destroy]
 
             def show
-                render json: @feed
+                render json: @feed, methods: :has_media?
             end
 
             def index
@@ -46,7 +46,7 @@ module Api
             end
 
             def feed_params
-                params.require(:feed).permit(:title, :description)
+                params.require(:feed).permit(:title, :description, media: [])
             end
         end 
     end
