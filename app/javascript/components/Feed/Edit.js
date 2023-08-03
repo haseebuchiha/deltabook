@@ -26,8 +26,10 @@ const EditFeed = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        const id = params.id
 
-        axios.post('/api/v1/feeds', { feed })
+        const url = `/api/v1/feeds/${id}`
+        axios.patch(url, { feed })
             .then(resp => {
                 navigate(`/feed/${resp.data.id}`)
             })
