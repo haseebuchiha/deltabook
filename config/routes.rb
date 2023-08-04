@@ -7,10 +7,13 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :feeds
+      delete 'feed_media/:id/purge_later', to: 'feeds#media_purge_later'
     end
   end
   
   resources :feeds
+
+  delete 'feed_media/:id/purge_later', to: 'feeds#media_purge_later', as: 'feedmedia_purgelater'
 
   get 'towerofhonoi', to: 'games#towerofhonoi'
   get 'tictactoe', to: 'games#tictactoe'

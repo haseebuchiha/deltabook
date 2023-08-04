@@ -19,6 +19,7 @@
                 </div>
                 <% if @feed.has_media? %>
                     <div style="width: 600px; height:400px">
+                        <%= @feed.media.length %>
                         <% @feed.media.each do |item| %>
                             <% if item.content_type.start_with?("video") %>
                                 <%= video_tag(url_for(item),style:"width: 100%; height: auto", controls: "")%>

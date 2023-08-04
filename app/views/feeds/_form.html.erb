@@ -13,10 +13,23 @@
         </div>
     </div>
 
+    <% if !@feed.errors.any? && @feed.has_media? %>
+        <div style="width: 600px; height:400px">
+            <% @feed.media.each do |item| %>
+                <% if item.content_type.start_with?("video") %>
+                    <%= video_tag(url_for(item),style:"width: 100%; height: auto", controls: "")%>
+                <% elsif item.content_type.start_with?("image") %>
+                    <%= image_tag(item, style:"width: 100%; height: auto") %>
+                <% end %>
+                <%= link_to "Delete Item", feedmedia_purgelater_path(item), method: :delete %>
+            <% end %>
+        </div>
+    <% end %>
+
     <div class="form-group row">
         <%= f.label :media, "Attach Images/Video" , class: "col-2 col-form-label text-light" %>
         <div class="col-10">
-            <%= f.file_field :media, class: "shadow rounded"%>
+            <%= f.file_field :media, multiple: true, class: "shadow rounded"%>
         </div>
     </div>
 

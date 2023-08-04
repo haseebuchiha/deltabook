@@ -8,12 +8,17 @@ class FeedsController < ApplicationController
         @feeds = Feed.all
     end
 
+    def media_purge_later
+        media = ActiveStorage::Attachment.find(params[:id])
+        media.purge_later
+        redirect_back fallback_location: root_path, notice: "Media Deleted"
+    end
+
     def new
         @feed = Feed.new()
     end
 
     def create
-        byebug
         @feed = Feed.new(feed_params)
         if @feed.save
             flash[:notice] = "Feed has been posted successfully"
@@ -47,7 +52,7 @@ class FeedsController < ApplicationController
     end
 
     def feed_params
-        params.require(:feed).permit(:title, :description, :media)
+        params.require(:feed).permit(:title, :description, media: [])
     end
 
 end

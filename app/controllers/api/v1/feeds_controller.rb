@@ -14,6 +14,13 @@ module Api
                 render json: @feeds, methods: :has_media?
             end
 
+            def media_purge_later
+                media = ActiveStorage::Attachment.find(params[:id])
+                media.purge_later
+                @id = params[:id]
+                render json: {id: @id, success: true}
+            end
+
             def create
                 @feed = Feed.new(feed_params)
                 if @feed.save
