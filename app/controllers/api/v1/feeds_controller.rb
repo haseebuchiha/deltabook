@@ -11,7 +11,7 @@ module Api
 
             def index
                 @feeds = Feed.all
-                render json: @feeds
+                render json: @feeds, methods: :has_media?
             end
 
             def create
@@ -25,7 +25,7 @@ module Api
 
             def update
                 if @feed.update(feed_params)
-                    render json: @feed
+                    render json: {id: @feed.id}
                 else
                     render json: { error: @feed.errors.messages }, status: 422
                 end

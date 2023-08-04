@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     end
   end
   
+  resources :feeds
+
   get 'towerofhonoi', to: 'games#towerofhonoi'
   get 'tictactoe', to: 'games#tictactoe'
   get 'rockpaperscissor', to: 'games#rockpaper'
@@ -19,5 +21,5 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   post 'users', to: 'users#create'  
 
-  match "*path" => "pages#feeds", via: [:get, :post]
+  # match "*path" => "pages#feeds", via: [:get, :post] // Wont show media files if this is uncommented
 end
