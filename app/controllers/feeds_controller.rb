@@ -52,7 +52,7 @@ class FeedsController < ApplicationController
     end
 
     def feed_params
-        params.require(:feed).permit(:title, :description, media: [])
+        params.require(:feed).permit(:title, :description, :media)
     end
 
 end

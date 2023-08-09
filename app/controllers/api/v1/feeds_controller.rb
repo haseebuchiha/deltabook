@@ -6,12 +6,22 @@ module Api
             before_action :set_feed, only: [:show, :edit, :update, :destroy]
 
             def show
-                render json: @feed, methods: :has_media?
+                render json: @feed.as_json.merge(
+                    media: @feed.media.map do |item|
+                            item.as_json.merge({link: url_for(item)})
+                    end
+                )
             end
 
             def index
                 @feeds = Feed.all
-                render json: @feeds, methods: :has_media?
+                render json: @feeds.map { |feed|
+                    feed.as_json.merge(
+                        media: feed.media.map do |item|
+                            item.as_json.merge({link: url_for(item)})
+                        end
+                    )
+                }
             end
 
             def media_purge_later
