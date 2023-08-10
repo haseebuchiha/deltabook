@@ -41,7 +41,13 @@ module Api
             end
 
             def update
-                if @feed.update(feed_params)
+                if @feed.update(feed_params.except(:media))
+                    media = feed_params[:media]
+                    if media
+                        media.each do |item|
+                            @feed.media.attach(item)
+                        end
+                    end
                     render json: {id: @feed.id}
                 else
                     render json: { error: @feed.errors.messages }, status: 422
