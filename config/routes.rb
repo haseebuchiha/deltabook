@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
-  root 'pages#home'
+  devise_for :users, 
+              controllers: { 
+                registrations: 'users/registrations' }
+  root to: 'pages#home'
   resources :games, only: [:show]
+
+  get 'friends/new'
+  post 'friends/create'
+  get 'friends/show'
   resources :users, only: [:show]
-  resources :users, except: [:show]
+
+  resources :feeds
 
   namespace :api do
     namespace :v1 do
@@ -25,4 +33,7 @@ Rails.application.routes.draw do
   post 'users', to: 'users#create'  
 
   # match "*path" => "pages#feeds", via: [:get, :post] // Wont show media files if this is uncommented
+  
+  resources :messages
+  mount ActionCable.server, at: '/cable'
 end
