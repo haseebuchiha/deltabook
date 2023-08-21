@@ -56,3 +56,5 @@ class FeedsController < ApplicationController
     end
 
 end
+
+
