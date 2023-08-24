@@ -18,4 +18,8 @@ class ApplicationController < ActionController::Base
         end
     end
 
+    def index
+        flash.notice = 'No page found at that address'
+        redirect_to root_path
+      end
 end

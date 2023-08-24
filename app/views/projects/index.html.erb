@@ -1,11 +1,9 @@
+<p style="color: green"><%= notice %></p>
 
-<h1 class="text-center mt-5 font-italic font-weight-bold"><%=@user.username%>'s profile</h1>
-<h5 class="text-center mt-3 font-italic">Choose Your Game To Play</h5>
+<h1 class="text-center mt-4">Games</h1>
 
-<div class="text-center mt-4">
-
-  <div class="container">
-  <% @user.projects.each do |project| %>
+<div class="container">
+  <% @projects.each do |project| %>
     <div class="row justify-content-md-center">
       <div class="col-8 mt-4">
         <div class="card text-center shadow mb-5 bg-white rounded">
@@ -36,5 +34,3 @@
 <div style="display: flex; justify-content: center;">
   <%= link_to "Add Game", new_project_path, class: "btn btn-outline-primary  mb-5" %>
 </div>
-</div>
- 
