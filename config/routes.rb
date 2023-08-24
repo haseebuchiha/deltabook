@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  devise_for :users, 
+              controllers: { 
+                registrations: 'users/registrations' }
+  root to: 'pages#home'
+  resources :games, only: [:show]
 
   resources :projects do
     get 'iframe', on: :member
@@ -6,10 +11,20 @@ Rails.application.routes.draw do
   get 'friends/new'
   post 'friends/create'
   get 'friends/show'
-  root 'pages#home'
-  resources :games, only: [:show]
   resources :users, only: [:show]
-  resources :users, except: [:show]
+
+  resources :feeds
+
+  namespace :api do
+    namespace :v1 do
+      resources :feeds
+      delete 'feed_media/:id/purge_later', to: 'feeds#media_purge_later'
+    end
+  end
+  
+  resources :feeds
+
+  delete 'feed_media/:id/purge_later', to: 'feeds#media_purge_later', as: 'feedmedia_purgelater'
 
   get 'towerofhonoi', to: 'games#towerofhonoi'
   get 'tictactoe', to: 'games#tictactoe'
@@ -23,4 +38,8 @@ Rails.application.routes.draw do
   get '*all', to: 'application#index', constraints: lambda { |req|
     req.path.exclude? 'rails/active_storage'
   }
+  # match "*path" => "pages#feeds", via: [:get, :post] // Wont show media files if this is uncommented
+  
+  resources :messages
+  mount ActionCable.server, at: '/cable'
 end

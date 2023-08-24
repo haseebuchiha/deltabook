@@ -5,50 +5,78 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all'%>
+    <%= javascript_pack_tag 'application'%>
+    
+    <script src="https://kit.fontawesome.com/dbd39da8f1.js" crossorigin="anonymous"></script>
+    <%= javascript_pack_tag 'msg' %>
     <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    
+    <style>
+
+      <%= ".msgg-#{current_user&.id}" %> {
+        text-align: start;
+      }
+      <%= ".msgg-#{current_user&.id} p" %> {
+       background-color: #007bff !important;
+       color: #fff !important;
+      }
+
+    </style>
 
   </head>
-
+  
   <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
           <a class="h5 font-weight-bold mt-2">LOGO_HERE</a>
-          <span class="navbar-toggler-icon"></span>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
           <div class="navbar-nav">
-            <%= link_to 'Home', root_path, class:" nav-link active" %>              
+            <%= link_to 'Home', root_path, class:" nav-link active" %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle nav-item" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                Feeds
+              </a>
+              <div class="dropdown-menu">
+                <%= link_to 'Show Feeds', "/feeds", class: "dropdown-item nav-item" %>
+                <%= link_to 'New Feed', "/feeds/new", class: "dropdown-item nav-item" %>
+              </div>
+              
+            </li>            
               <%if current_user%>
-                <%= link_to 'Profile', user_path(current_user.id), class:" nav-link" %>  
-                <%= link_to 'All Games', projects_path(current_user.id), class: "nav-link"%>               
-                <%= link_to 'Add Games', new_project_path(current_user.id), class: "nav-link"%>              
-                <%= link_to 'Logout', logout_path, class: "nav-link", method: :delete %>
+                <%= link_to 'Profile', user_path(current_user.id), class:" nav-link" %>
+                <%= link_to 'Add Games', edit_user_registration_path(current_user.id), class: "nav-link" %>          
+                <%= link_to 'Logout', destroy_user_session_path, class: "nav-link", method: :delete %>
+                <%= link_to 'Add Games 2', new_project_path(current_user.id), class: "nav-link"%> 
+                <%= link_to 'Chat App', messages_path, class:" nav-link" %>           
                 <%= link_to 'Add Friends', friends_new_path, class: "nav-link" %>
-              <%= link_to 'Friends List', friends_show_path, class: "nav-link" %>
+                <%= link_to 'Friends List', friends_show_path, class: "nav-link" %>
               <% end %>  
-            <%if !current_user%>
-              <li class="nav-item">
-                <%= link_to 'Log in', login_path, class: "nav-link" %>
-              </li>
+              <%if !current_user%>
                 <li class="nav-item">
-                  <%= link_to 'Signup', signup_path, class: "nav-link"%>
+                  <%= link_to 'Log in', new_user_session_path, class: "nav-link" %>
                 </li>
-            <% end %>            
+                <li class="nav-item">
+                  <%= link_to 'Signup', new_user_registration_path, class: "nav-link"%>
+                </li>
+              <% end %>            
           </div>
         </div>
       </div>
     </nav> 
 
-    <div class="text-center">
+    <div class="container">
       <% flash.each do |name, msg| %>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-          <%= msg %>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <div class="alert <%= name.to_s == "notice" ? "alert-success" : "alert-danger" %> alert-dismissible fade show" role="alert">
+            <%= msg %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
       <% end %> 
     </div>
