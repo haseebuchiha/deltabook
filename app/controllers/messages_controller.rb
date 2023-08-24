@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
         @message = Message.new(message_params)
         @message.user = current_user
         if @message.save
-            ActionCable.server.broadcast "chatroom_channel", mod_msg: message_render(@message)
+            ActionCable.server.broadcast "chatroom_channel", {mod_msg: message_render(@message)}
         else
             flash[:alert] = "Comment can't be empty."
             redirect_to messages_path
