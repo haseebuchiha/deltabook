@@ -10,7 +10,7 @@ class MessagesController < ApplicationController
         if @message.save
             ActionCable.server.broadcast "chatroom_channel", mod_msg: message_render(@message)
         else
-            flash[:alert] = "Comment cann't be empty."
+            flash[:alert] = "Comment can't be empty."
             redirect_to messages_path
         end
     end
