@@ -15,5 +15,5 @@ consumer.subscriptions.create("ChatroomChannel", {
     }
   },
 
- 
+
 });
