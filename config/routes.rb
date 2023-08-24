@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   resources :games, only: [:show]
 
+  resources :projects do
+    get 'iframe', on: :member
+  end
   get 'friends/new'
   post 'friends/create'
   get 'friends/show'
@@ -32,6 +35,9 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   post 'users', to: 'users#create'  
 
+  get '*all', to: 'application#index', constraints: lambda { |req|
+    req.path.exclude? 'rails/active_storage'
+  }
   # match "*path" => "pages#feeds", via: [:get, :post] // Wont show media files if this is uncommented
   
   resources :messages

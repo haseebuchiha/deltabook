@@ -1,0 +1,24 @@
+<p style="color: green"><%= notice %></p>
+
+
+<div class="jumbotron">
+  <h1 class="display-4 text-primary"><%= @project.title %></h1>
+  <p class="lead"><%= simple_format(@project.description, class: "h5") %></p>
+  <hr class="my-4">
+  <p class="lead">
+    <div>
+  <% if current_user == @project.user%> 
+  <%= link_to "Edit this post", edit_project_path(@project), class:"btn btn-primary text-light"  %> 
+  <%= link_to"Destroy this post", @project, method: :delete, class:"btn btn-danger text-light" %>
+
+  <%end%>
+  <%if current_user%>
+  <% if @html_content.present? %>
+  <%= link_to "Back to games", projects_path, class: "btn btn-secondary text-light" %>
+  <%= link_to "Play this game", iframe_project_path(@project), target: "_blank", class: "btn btn-success text-light" %>
+
+  <% end %>
+  <% end %>
+  </div>
+  </p>
+</div>

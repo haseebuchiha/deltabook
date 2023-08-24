@@ -1,0 +1,18 @@
+<!-- app/views/projects/iframe.html.erb -->
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Add the base tag here only if there are image files -->
+ <% base_tag_path = "/uploads/#{@project.folder_name}/" %>
+
+  <base href="<%= base_tag_path %>">
+  
+</head>
+<body>
+  <!-- Render the HTML content -->
+  <div class="message-code">
+    <%= @html_content.html_safe if @html_content.present? %>
+  </div>
+
+</body>
+</html>
