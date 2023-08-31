@@ -10,16 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_24_105647) do
+ActiveRecord::Schema.define(version: 2023_08_02_113214) do
 
-ActiveRecord::Schema.define(version: 2023_07_20_150115) do
-  
   create_table "feeds", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
+
   create_table "game_users", force: :cascade do |t|
     t.integer "game_id"
     t.integer "user_id"
@@ -29,11 +28,19 @@ ActiveRecord::Schema.define(version: 2023_07_20_150115) do
     t.string "name"
   end
 
+  create_table "jwt_blacklists", force: :cascade do |t|
+    t.string "jti"
+    t.datetime "exp"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["jti"], name: "index_jwt_blacklists_on_jti"
+  end
 
   create_table "messages", force: :cascade do |t|
     t.string "body"
     t.integer "user_id"
   end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"

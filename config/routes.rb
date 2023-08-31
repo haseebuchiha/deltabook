@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+    
+   # API routes
+  namespace :api, defaults: { format: :json } do
+    devise_scope :user do
+      namespace :v1 do
+        post '/auth', to: 'users/registrations#create'
+        post 'auth/sign_in', to: 'users/sessions#create'
+        delete 'auth/sign_out', to: 'users/sessions#destroy'
+      end
+    end
+  end
+
   devise_for :users, 
               controllers: { 
                 registrations: 'users/registrations' }
