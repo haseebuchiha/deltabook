@@ -1,3 +1,4 @@
+@import 'bootstrap/dist/css/bootstrap';
 .hr-shortened {
   width: 10%;
   background-color: black;
@@ -9,3 +10,11 @@
 div.form-group.row {
   margin: 0 auto;
 }
+
+.hr-shortened {
+    width: 10%;
+    background-color: #007bff; /* Replace with your desired primary color */
+    height: 2px;
+    border: none;
+  }
+  
