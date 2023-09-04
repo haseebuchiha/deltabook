@@ -15,10 +15,10 @@
             <p class="card-text"><%= truncate(project.description, length: 100 ) %></p>
             <div>
               <%= link_to "View", project_path(project), class:" btn btn-success text-light"%>
-              <% if logged_in? && (project.user == current_user) %>
-              <%= link_to "Edit", edit_project_path(project), class:" btn btn-primary text-light"%>
-              <%= link_to 'Delete', project_path(project), method: :delete, class:" btn btn-danger text-light" %>
-              <%end%>
+              <%# if logged_in? && (project.user == current_user) %>
+                <%= link_to "Edit", edit_project_path(project), class:" btn btn-primary text-light"%>
+                <%= link_to 'Delete', project_path(project), method: :delete, class:" btn btn-danger text-light" %>
+              <%#end%>
             </div>
           </div>
           <div class="card-footer text-muted">

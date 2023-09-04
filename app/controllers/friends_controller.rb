@@ -14,9 +14,8 @@ class FriendsController < ApplicationController
       flash[:alert] = "User Not Found"
       redirect_to friends_new_path
     end
-
-
   end
+  
   def new
 
   end
