@@ -5,36 +5,35 @@
 <div class="text-center mt-4">
 
   <div class="container">
-  <% @user.projects.each do |project| %>
-    <div class="row justify-content-md-center">
-      <div class="col-8 mt-4">
-        <div class="card text-center shadow mb-5 bg-white rounded">
-          <div class="card-header fst-italic">
-            By <%= link_to project.user.username, user_path(project.user) %>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title"><%= link_to project.title, project_path(project), class: "text-primary" %></h5>
-            <p class="card-text"><%= truncate(project.description, length: 100 ) %></p>
-            <div>
-              <%= link_to "View", project_path(project), class:" btn btn-success text-light"%>
-              <% if logged_in? && (project.user == current_user) %>
-              <%= link_to "Edit", edit_project_path(project), class:" btn btn-primary text-light"%>
-              <%= link_to 'Delete', project_path(project), method: :delete, class:" btn btn-danger text-light" %>
-              <%end%>
+    <% @user.projects.each do |project| %>
+      <div class="row justify-content-md-center">
+        <div class="col-8 mt-4">
+          <div class="card text-center shadow mb-5 bg-white rounded">
+            <div class="card-header fst-italic">
+              By <%= link_to project.user.username, user_path(project.user) %>
             </div>
-          </div>
-          <div class="card-footer text-muted">
-            <small> Created <%= time_ago_in_words(project.created_at) %> ago, edited <%= time_ago_in_words(project.updated_at) %> ago </small>
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to project.title, project_path(project), class: "text-primary" %></h5>
+              <p class="card-text"><%= truncate(project.description, length: 100 ) %></p>
+              <div>
+                <%= link_to "View", project_path(project), class:" btn btn-success text-light"%>
+                <%# if logged_in? && (project.user == current_user) %>
+                  <%= link_to "Edit", edit_project_path(project), class:" btn btn-primary text-light"%>
+                  <%= link_to 'Delete', project_path(project), method: :delete, class:" btn btn-danger text-light" %>
+                <%#end%>
+              </div>
+            </div>
+            <div class="card-footer text-muted">
+              <small> Created <%= time_ago_in_words(project.created_at) %> ago, edited <%= time_ago_in_words(project.updated_at) %> ago </small>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
 
-
-<div style="display: flex; justify-content: center;">
-  <%= link_to "Add Game", new_project_path, class: "btn btn-outline-primary  mb-5" %>
-</div>
+  <div style="display: flex; justify-content: center;">
+    <%= link_to "Add Game", new_project_path, class: "btn btn-outline-primary  mb-5" %>
+  </div>
 </div>
  

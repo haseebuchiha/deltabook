@@ -35,9 +35,11 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   post 'users', to: 'users#create'  
 
-  get '*all', to: 'application#index', constraints: lambda { |req|
-    req.path.exclude? 'rails/active_storage'
-  }
+  # get '*all', to: 'application#index', constraints: lambda { |req|
+  #   req.path.exclude? 'rails/active_storage'
+  # }
+
+  
   # match "*path" => "pages#feeds", via: [:get, :post] // Wont show media files if this is uncommented
   
   resources :messages
