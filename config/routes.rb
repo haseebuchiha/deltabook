@@ -19,6 +19,18 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :feeds
       delete 'feed_media/:id/purge_later', to: 'feeds#media_purge_later'
+      
+      # devise_for :users, path_names: {
+      #   sign_in: 'auth/sign_in',
+      # },
+      #   controllers: {
+      #     sessions: 'api/v1/users/sessions',
+      #     registrations: 'api/vi/users/registrations'
+      #   }
+      resources :users
+        post 'auth', to: 'registrations#create'
+        post 'auth/sign_in', to: 'users/sessions#create'
+        delete 'auth/sign_out', to: 'sessions#destroy'
     end
   end
   
