@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+  # API routes
+  namespace :api, defaults: { format: :json } do
+    devise_scope :user do
+      namespace :v1 do
+        post '/auth', to: 'users/registrations#create'
+        post 'auth/sign_in', to: 'users/sessions#create'
+        delete 'auth/sign_out', to: 'users/sessions#destroy'
+      end
+    end
+  end
+  
   devise_for :users, 
               controllers: { 
                 registrations: 'users/registrations' }
@@ -19,18 +30,6 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :feeds
       delete 'feed_media/:id/purge_later', to: 'feeds#media_purge_later'
-      
-      # devise_for :users, path_names: {
-      #   sign_in: 'auth/sign_in',
-      # },
-      #   controllers: {
-      #     sessions: 'api/v1/users/sessions',
-      #     registrations: 'api/vi/users/registrations'
-      #   }
-      resources :users
-        post 'auth', to: 'registrations#create'
-        post 'auth/sign_in', to: 'users/sessions#create'
-        delete 'auth/sign_out', to: 'sessions#destroy'
     end
   end
   
